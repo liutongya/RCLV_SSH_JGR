@@ -1,0 +1,101 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+# viscosity
+ viscAr=3.0E-4,
+
+ viscC4Leith=2.75,
+ viscC4Leithd=2.75,
+ viscA4GridMax=0.8,
+ useAreaViscLength=.TRUE.,
+
+# diffusivity
+ tempAdvScheme=7,
+ diffKrT=3.0E-7,
+ saltStepping=.FALSE.,
+ staggerTimeStep=.TRUE.,
+
+# multiDimAdvection=.TRUE.,
+# vectorInvariantMomentum=.TRUE.,
+
+# initial vertical profiles of S
+ sRef=29*35.0
+
+# equation of state
+ eosType='LINEAR',
+
+# boundary conditions
+ no_slip_sides=.TRUE.,
+ no_slip_bottom=.TRUE.,
+ bottomDragQuadratic=0.003,
+ sideDragFactor=2.0,
+
+# implicit diffusion and convective adjustment
+ implicitDiffusion=.TRUE.,
+ implicitViscosity=.TRUE.,
+
+# exact volume conservation
+ exactConserv=.TRUE.,
+
+# C-V scheme for Coriolis term
+ useCDscheme=.FALSE.,
+
+# file IO stuff
+ readBinaryPrec=64,
+ globalFiles=.TRUE.,
+ useSingleCpuIO=.TRUE.,
+
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=500,
+ cg2dTargetResidual=1.0E-9,
+ &
+
+# Time stepping parameters
+ &PARM03
+ nIter0=0,
+ nTimeSteps=8640,
+ deltaT=900.0,
+ abEps=0.1,
+
+ momDissip_In_AB=.FALSE.,
+ pChkptFreq=7776000,
+ chkptFreq=0.0,
+ dumpFreq=86400.0,
+
+ monitorFreq=86400.0,
+  
+ tauThetaClimRelax=2592000.0, 
+ 
+#periodicExternalForcing=.TRUE.,
+#externForcingPeriod=31104000.,
+#externForcingCycle=31104000.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingSphericalPolarGrid=.TRUE.,
+ delR=10.,10.,10.,20.,25.,25.,25.,25.,50.,50.,50.,100.,100.,100.,100.,100.,100.,
+      100.,100.,100.,100.,100.,100.,250.,250.,500.,500.,500.,500.,
+     
+ ygOrigin=0.,
+ xgOrigin=0.,
+ dySpacing=0.1,
+ dxSpacing=0.1,
+ &
+
+# Input datasets
+ &PARM05
+ bathyFile='depth.bin',
+ hydrogThetaFile='temp_floater.bin',
+ zonalWindFile= 'taux_ex2.bin',
+ thetaClimFile='surtemp_ex2.bin',
+ pSurfInitFile='ssh_floater.bin',
+ uVelInitFile='u_floater.bin',
+ vVelInitFile='v_floater.bin',
+ &
